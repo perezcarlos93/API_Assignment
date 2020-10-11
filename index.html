@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <title>Quiz Time!</title>
+</head>
+<body>
+    
+    <div id="score">Your Score: 00</div>
+    <div id="timer">Time: </div>
+    
+<div class="container">
+ 
+    <div class="start-btn">
+        <button id="start-btn" class="show">Start Quiz</button>
+    </div>
+
+    <form id="quiz" class="hide">
+        <hr>
+        <p id="question"></p>
+        <hr>
+        <label for="answer" id="ans1-txt"> </label>
+        <input type="radio" name="answer" class="answer" value="a"><br><br>
+        <label for="answer" id="ans2-txt"> </label>
+        <input type="radio" name="answer" class="answer" value="b"><br><br>
+        <label for="answer" id="ans3-txt"> </label>
+        <input type="radio" name="answer" class="answer" value="c"><br><br>
+        <label for="answer" id="ans4-txt"> </label>
+        <input type="radio" name="answer" class="answer" value="d"><br><br>
+    </form>
+
+    <div id="userScore">  </div>
+
+    <input type="text" id="userName" class="hide" value="" placeholder="Enter Your Initials Here!"><br>
+
+    <button type="button" id="userHighScore-btn" class="hide">Submit</button>
+
+    <summary id="highScoreList" class="hide">
+        High Scores:
+        <ol id="highScores">
+            
+        </ol>
+    </summary>
+
+    <button id="next-btn" class="hide">Next</button>
+    <hr>
+    
+    <div id="answerOutcome"></div>
+
+</div>
+
+
+
+<script src="javascript.js"></script>
+
+</body>
+</html>
