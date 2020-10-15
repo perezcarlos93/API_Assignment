@@ -25,9 +25,6 @@ var highScoreList = document.getElementById("highScoreList");
 // User High Score
 var highScoresText = document.getElementById("userScore");
 
-// Answer Outcome
-var answerOutcome = document.getElementById("answerOutcome");
-
 // Current Index of Question Array
 var currentQuestionNumber = 0;
 
@@ -131,10 +128,8 @@ nextBtn.addEventListener('click', () => {
     if(currentRightAnswer === userAnswer){
         currentScore += 10;
         timer = timer + 5;
-        answerOutcome.textContent = "correct!"
     }else{
         timer = timer - 10;
-        answerOutcome.textContent = "incorrect!"
     }
     
     console.log("User's Answer: " + userAnswer);
@@ -143,7 +138,6 @@ nextBtn.addEventListener('click', () => {
     
     scoreText.textContent = "Your Score: " + currentScore;
     selectedAnswer.checked = false;
-    answerOutcome.textContent = ""
     currentQuestionNumber++;
     
     if(currentQuestionNumber >= quizQuestions.length){

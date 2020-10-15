@@ -1,91 +1,11 @@
-# 04 Web APIs: Code Quiz
+## Description
+When the user click's "start", previously hidden HTML elements have their CSS classes changed to be visible, and the "start" button is changed to be hidden. The start button also initiates a function that will load the first question and set of possible answers into each corresponding HTML element from a question array of objects. On the "start" button, a timer is also initiated, that starts to countdown from 30 seconds. If this timer reaches 0 before the last question is answered, an end function is triggered that hides the question and answer elements and shows the final page which displays the user's score and gives the option to record a high score.
 
-## Your Task
-
-As you proceed in your journey to becoming a full-stack web developer, it’s likely that you’ll be asked to complete a coding assessment, perhaps as part of an interview process. A typical coding assessment is a combination of multiple-choice questions and interactive coding challenges. 
-
-To help you become familiar with these tests and give you a chance to apply the skills from this module, this week’s homework invites you to build a timed coding quiz with multiple-choice questions. This app will run in the browser, and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean, polished, and responsive user interface. This week’s coursework will teach you all the skills you need to succeed in this assignment.
+After the firs question is answered, when the "next" button is clicked, a series of "if" statements evaluates if the user selected the correct score by referencing the correct score from the question array. If they have, then their score has 10 points added on, and they gain an additional 5 seconds as well. If they did not answer correctly, there is no penalty to points, but the user is penalized 10 seconds. The array is then moved forward and an "if/else" statement evaluate if there are more questions. If there is, the next question is loaded. If not, the game is over, moving the player into the final page to see their final score and add it to the scoreboard.
 
 
-## User Story
+## GitHub Repository can be found here:
+https://github.com/perezcarlos93/API_Assignment
 
-```
-AS A coding boot camp student
-I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
-SO THAT I can gauge my progress compared to my peers
-```
-
-
-## Acceptance Criteria
-
-```
-GIVEN I am taking a code quiz
-WHEN I click the start button
-THEN a timer starts and I am presented with a question
-WHEN I answer a question
-THEN I am presented with another question
-WHEN I answer a question incorrectly
-THEN time is subtracted from the clock
-WHEN all questions are answered or the timer reaches 0
-THEN the game is over
-WHEN the game is over
-THEN I can save my initials and score
-```
-
-
-## Mock-Up
-
-The following animation demonstrates the application functionality:
-
-![code quiz](./Assets/04-web-apis-homework-demo.gif)
-
-
-## Grading Requirements
-
-This homework is graded based on the following criteria: 
-
-### Technical Acceptance Criteria: 40%
-
-* Satisfies all of the above acceptance criteria.
-
-### Deployment: 32%
-
-* Application deployed at live URL.
-
-* Application loads with no errors.
-
-* Application GitHub URL submitted.
-
-* GitHub repository that contains application code.
-
-### Application Quality: 15%
-
-* Application user experience is intuitive and easy to navigate.
-
-* Application user interface style is clean and polished.
-
-* Application resembles the mock-up functionality provided in the homework instructions.
-
-### Repository Quality: 13%
-
-* Repository has a unique name.
-
-* Repository follows best practices for file structure and naming conventions.
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages.
-
-* Repository contains quality README file with description, screenshot, and link to deployed application.
-
-
-## Review
-
-You are required to submit BOTH of the following for review:
-
-* The URL of the functional, deployed application.
-
-* The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
-
-- - -
-© 2020 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
+## Deployed GitPage can be found here:
+https://perezcarlos93.github.io/API_Assignment/
