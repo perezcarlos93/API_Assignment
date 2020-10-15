@@ -3,9 +3,9 @@ var nextBtn = document.getElementById("next-btn");
 
 // Timer and Score trackers
 var scoreText = document.getElementById("score");
-var score = 0;
+var currentScore = 0;
 var timerText = document.getElementById("timer");
-var timer = 20;
+var timer = 30;
 
 // Text Area where Question is pushed in to
 var questionText = document.getElementById("question");
@@ -17,21 +17,19 @@ var answer2Text = document.getElementById("ans2-txt");
 var answer3Text = document.getElementById("ans3-txt");
 var answer4Text = document.getElementById("ans4-txt");
 
-
-// Current Index of Question Array
-var currentQuestionNumber = 0;
-
 // High Score Div
-var highScoreList = document.getElementById("highScores");
-var userHighScoreBtn = document.getElementById("userHighScore-btn");
+var userHighScoreSubmitBtn = document.getElementById("userHighScoreSubmit-btn");
 var userNameInput = document.getElementById("userName");
-var highScoreSection = document.getElementById("highScoreList");
+var highScoreList = document.getElementById("highScoreList");
 
 // User High Score
 var highScoresText = document.getElementById("userScore");
 
 // Answer Outcome
-    var answerOutcome = document.getElementById("answerOutcome");
+var answerOutcome = document.getElementById("answerOutcome");
+
+// Current Index of Question Array
+var currentQuestionNumber = 0;
 
 //Question Object Array 
 var quizQuestions = [
@@ -121,7 +119,6 @@ function startTimer(){
   }, 1000);
 };
 
-      
 
 // Function that advances the quiz 
 nextBtn.addEventListener('click', () => {
@@ -132,7 +129,7 @@ nextBtn.addEventListener('click', () => {
     }
     var userAnswer = selectedAnswer.value;
     if(currentRightAnswer === userAnswer){
-        score += 10;
+        currentScore += 10;
         timer = timer + 5;
         answerOutcome.textContent = "correct!"
     }else{
@@ -141,21 +138,22 @@ nextBtn.addEventListener('click', () => {
     }
     
     console.log("User's Answer: " + userAnswer);
-    console.log("User's Score: " + score);
+    console.log("User's Score: " + currentScore);
     console.log("--------------------------");
     
-    scoreText.textContent = "Your Score: " + score;
+    scoreText.textContent = "Your Score: " + currentScore;
     selectedAnswer.checked = false;
     answerOutcome.textContent = ""
     currentQuestionNumber++;
     
     if(currentQuestionNumber >= quizQuestions.length){
         endQuiz();
-    }else{addQuestion();}
+    }else{
+        addQuestion();
+    }
     
-    
-    localStorage.setItem('score', score)
 });
+
 
 // function that adds question and answer into HTMl
 function addQuestion(){
@@ -173,24 +171,101 @@ function addQuestion(){
 function endQuiz(){
     quizEl.className = 'hide';
     nextBtn.className = 'hide';
-    highScoresText.textContent = "Congratulations, your score is: " + score;
-    userHighScoreBtn.className = "show";
+    highScoresText.textContent = "Congratulations, your score is: " + currentScore;
+    userHighScoreSubmitBtn.className = "show";
     userNameInput.className = "show";
-    highScoreSection.className ="show";
-}
+    highScoreList.className ="show";
 
-userHighScoreBtn.addEventListener('click', function(){
-    localStorage.setItem('username', userNameInput.value)
-    name = localStorage.getItem('username');
-    x = localStorage.getItem('score');
+    saveHighScore();
+}        
 
-    function displayHighScore(){
-    var listItem = document.createElement('li');
-    listItem.textContent = name + ": " + x;
-    highScoreList.appendChild(listItem);
+var masterList = JSON.parse(localStorage.getItem('list')) || [];
+
+
+userHighScoreSubmitBtn.addEventListener('click', function(e){
+    e.preventDefault();    
+    var name = userNameInput.value.trim();
+   
+    if(!name){
+        alert("Enter your initials!");
+        return;
     }
+    
+    var nameAndScore = name + ": " + currentScore;
 
-    displayHighScore()
+    masterList.push(nameAndScore);
+
+    localStorage.setItem('list', JSON.stringify(masterList));
+    
+    saveHighScore();
 });
 
+function saveHighScore(){
 
+    highScoreList.innerHTML = "";
+
+    for(i = 0; i < masterList.length; i++){
+        var last = masterList[i];
+        
+        var li = document.createElement('li');
+        li.textContent = last;
+        highScoreList.appendChild(li);
+    }
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function renderHighScores(){
+//     for(i = 0; i < highScoresLI.length; i++){
+//         var highScore = highScoresLI[i];
+        
+//         var li = document.createElement('li');
+//         li.textContent = highScore;        
+//         highScoreList.appendChild(li);
+//     }
+// };
+//     var highScoresLI = [];
+    
+//     initiate();
+    
+//     function initiate(){
+//         var storedName = localStorage.getItem('name');
+//         var storedScore = localStorage.getItem('score');
+    
+//         if(storedName !== null){
+//             highScoresLI = storedName + storedScore;
+//         }
+        
+//         renderHighScores();
+//     }
